@@ -1,0 +1,13 @@
+Authors: 	-
+
+Institution:	RKI
+
+Website-url: 	https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Projekte_RKI/Nowcasting.html
+
+Methods: 	instantaneous reproduction number (Core er al. (2013)), welche rückwärtsschauend in der Zeit definiert ist
+Annahme: konstante Generationszeit und konstantes serielles Intervall von 4 Tagen
+Das heißt 𝑅𝑡 gibt an, wieviele Personen eine Person mit Erkrankungsbeginn zum Zeitpunkt 𝑡 − 4 im Durchschnitt ansteckt. Die angesteckten Personen werden dann zum Zeitpunkt 𝑡 beobachtet. 
+Schätzung für 𝑅𝑡 Zeitpunkt t sehr unruhig -> 𝑅𝑡 über ein Intervall von 𝜏 Tagen berechnen (7 Tage R, 4 Tage R)
+
+License:		Die Internetseiten sind Eigentum des Robert Koch-Instituts. Die Verwendung, Vervielfältigung, Weiterverbreitung, Übersetzung, Mikroverfilmung, Einspeicherung und Verarbeitung in elektronischen Systemen zu kommerziellen Zwecken oder sonstige Verwertung ist nur im Rahmen der geltenden rechtlichen Vorschriften, insbesondere des Urheberrechtsgesetzes, zulässig.
+Print-Zeitschriften, die vollständig oder in Auszügen im Internet stehen (Epidemiologisches Bulletin bzw. Bundesgesundheitsblatt), dürfen nicht ohne schriftliche Genehmigung auf elektronischem Weg  			weiterverbreitet werden

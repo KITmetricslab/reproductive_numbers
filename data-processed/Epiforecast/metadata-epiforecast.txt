@@ -1,0 +1,16 @@
+Authors: Abbott, Sam; Bennett, Christopher; Hickson, Joe; Allen, Jamie; Sherratt, Katharine; Funk, Sebastian
+
+Institution: Epiforecast
+
+website_url: https://epiforecasts.io/covid/posts/national/germany/ 
+
+Methods: 12-week rolling window; We used a log normal prior for the reproduction number (R₀) with mean 1 and standard deviation 0.2 reflecting our current belief that Rₜ is likely to be centred around 1 in most of the world, with public health interventions and individual behaviour combining to prevent it from growing significantly larger for sustained periods.
+generation time: mean of 5.2 days, SD of 1.52 days
+We forecast the time-varying effective reproduction number over a 14-day time horizon by assuming it remains the same as the last estimated Rₜ
+
+License: MIT
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software
+
+

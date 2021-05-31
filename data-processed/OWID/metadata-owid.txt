@@ -1,0 +1,5 @@
+authors: Francisco Arroyo, Francisco Bullano, Simas Kucinskas, and Carlos Rondón-Moreno
+institution: Central Bank of Chile, Santiago, Chile, Humboldt University of Berlin, Berlin, Germany
+website_url: https://github.com/owid/covid-19-data/tree/master/public/data
+methods: Arroyo-Marioli F, Bullano F, Kucinskas S, Rondón-Moreno C (2021) Tracking R of COVID-19: A new real-time estimation using the Kalman filter. PLoS ONE 16(1): e0244474. https://doi.org/10.1371/journal.pone.0244474
+license: Creative Commons BY License
