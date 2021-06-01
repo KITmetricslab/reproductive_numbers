@@ -9,10 +9,10 @@ Created on Wed May 19 12:16:18 2021
 import pandas as pd
 
 #Excel-Datei einlesen
-df= pd.read_csv('../data-raw/Harvard/2021-05-26-Harvard.csv', delimiter= ',')
+df= pd.read_csv('./data-raw/Epiforecast/2021-05-01_epiforecast_raw.csv', delimiter= ',')
 
 #Spalte data_version
-df.insert(0, 'data_version', '', True)
+df.insert(0, 'data_version', '2021-05-01', True)
 
 #Spalte target
 df.insert(1, 'target', '14 day R', True)
@@ -83,4 +83,4 @@ df_t.loc[df_t.variable=='upper_90','quantile']='0.95'
 df_t.drop('variable', axis=1, inplace=True)
 
 #Datei exportieren
-df_t.to_csv('../data-processed/RKI/2021-05-26-RKI.csv', index=False)
+df_t.to_csv('./data-processed/Epiforecast/2021-05-01_epiforecast_processed.csv', index=False)
