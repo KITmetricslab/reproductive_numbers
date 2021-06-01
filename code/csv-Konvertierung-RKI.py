@@ -21,7 +21,7 @@ df_rki = pd.read_csv(io.StringIO(rki.decode('Latin1')), sep=';')
 
 #Spalte data_version
 #Datum hier entsprechend anpassen!
-df_rki.insert(0, 'data_version', '2021-05-29', True)
+df_rki.insert(0, 'data_version', '2021-06-01', True)
 
 #Spalte Datum umbenennen
 df_rki.rename(columns= {'Datum': 'date'}, inplace=True)
@@ -118,5 +118,5 @@ df_rki_merged=df_rki_merged.reindex(columns=columnsTitles)
 
 #neue Datei abspeichern
 #Datum im Namen anpassen!
-df_rki_merged.to_csv('../data-processed/RKI/2021-05-29-RKI.csv', index=False)
+df_rki_merged.to_csv('./data-processed/RKI/2021-06-01-RKI.csv', index=False)
 
