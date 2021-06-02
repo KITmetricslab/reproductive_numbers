@@ -12,6 +12,9 @@ import datetime
 import requests
 import io
 
+#Datum eingeben
+datum= '2021-06-02'
+
 #CSV-Datei mit den neuen Daten einlesen
 XLSX_RKI = 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Projekte_RKI/Nowcasting_Zahlen_csv.csv?__blob=publicationFile'
 rki = requests.get(XLSX_RKI).content
@@ -21,7 +24,7 @@ df_rki = pd.read_csv(io.StringIO(rki.decode('Latin1')), sep=';')
 
 #Spalte data_version
 #Datum hier entsprechend anpassen!
-df_rki.insert(0, 'data_version', '2021-06-01', True)
+df_rki.insert(0, 'data_version', datum , True)
 
 #Spalte Datum umbenennen
 df_rki.rename(columns= {'Datum': 'date'}, inplace=True)
@@ -118,5 +121,5 @@ df_rki_merged=df_rki_merged.reindex(columns=columnsTitles)
 
 #neue Datei abspeichern
 #Datum im Namen anpassen!
-df_rki_merged.to_csv('./data-processed/RKI/2021-06-01-RKI.csv', index=False)
+df_rki_merged.to_csv('./data-processed/RKI/'+datum+'-RKI.csv', index=False)
 
