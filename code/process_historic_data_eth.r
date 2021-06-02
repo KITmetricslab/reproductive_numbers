@@ -1,5 +1,3 @@
-
-
 files <- list.files("data-raw/ETH Zürich", pattern = "*_raw.csv")
 for (f in files) {
     input_filename <- paste("data-raw/ETH Zürich/", f, sep = "")
@@ -18,12 +16,12 @@ for (f in files) {
     for (row in seq(1, nrow(df1))) {
         output_dataframe1 <- rbind(output_dataframe1, list(data_version, "3 day R", df1[row, 6], "DE", "point", "NA", df1[row, 7]))
         output_dataframe1 <- rbind(output_dataframe1, list(data_version, "3 day R", df1[row, 6], "DE", "quantile", "0.025", df1[row, 9]))
-        output_dataframe1 <- rbind(output_dataframe1, list(data_version, "3 day R", df1[row, 6], "DE", "quantile", "97.5", df1[row, 8]))
+        output_dataframe1 <- rbind(output_dataframe1, list(data_version, "3 day R", df1[row, 6], "DE", "quantile", "0.975", df1[row, 8]))
     }
     for (row in seq(1, nrow(df2))) {
         output_dataframe2 <- rbind(output_dataframe2, list(data_version, "7 day R", df2[row, 6], "DE", "point", "NA", df2[row, 7]))
         output_dataframe2 <- rbind(output_dataframe2, list(data_version, "7 day R", df2[row, 6], "DE", "quantile", "0.025", df2[row, 9]))
-        output_dataframe2 <- rbind(output_dataframe2, list(data_version, "7 day R", df2[row, 6], "DE", "quantile", "97.5", df2[row, 8]))
+        output_dataframe2 <- rbind(output_dataframe2, list(data_version, "7 day R", df2[row, 6], "DE", "quantile", "0.975", df2[row, 8]))
     }
     colnames(output_dataframe1) <- cnames
     colnames(output_dataframe2) <- cnames
