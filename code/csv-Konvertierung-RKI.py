@@ -13,7 +13,7 @@ import requests
 import io
 
 #Datum eingeben
-datum= '2021-06-03'
+datum= '2021-06-04'
 
 #CSV-Datei mit den neuen Daten einlesen
 XLSX_RKI = 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Projekte_RKI/Nowcasting_Zahlen_csv.csv?__blob=publicationFile'
