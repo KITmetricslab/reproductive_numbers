@@ -9,7 +9,7 @@ Created on Wed May 19 12:16:18 2021
 import pandas as pd
 
 #Excel-Datei einlesen
-path= './data-raw/Epiforecast/2020-12-31_epiforecast_raw.csv'
+path= './data-raw/Epiforecast/2020-12-01_epiforecast_raw.csv'
 df= pd.read_csv(path, delimiter= ',')
 
 #Datum extrahieren aus dem pfad
@@ -42,6 +42,10 @@ df.rename(columns= {'country': 'location'}, inplace=True)
 #Spalte strat entfernen
 df.drop('strat', axis=1, inplace=True)
 
+#95%-Intervall schätzen
+df['upper_95']= df['mean']+ 1.96*df['sd']
+df['lower_95']=df['mean']-1.96*df['sd']
+
 #Spalte median und sd entfernen
 df.drop('mean', axis=1, inplace=True)
 df.drop('sd', axis=1, inplace=True)
@@ -50,13 +54,15 @@ df.drop('sd', axis=1, inplace=True)
 
 #Spalten in Zeilen umtransformieren 
 df_t=df.melt(id_vars= ["data_version","target","date", 'location', 'type'],
-                value_vars= ['median', 
+                value_vars= ['median',
+                            'lower_95',
                              'lower_90',
                              'lower_50', 
                              'lower_20', 
                              'upper_20', 
                              'upper_50', 
-                             'upper_90'], 
+                             'upper_90',
+                             'upper_95'], 
                 value_name="value")
 
 #Spalten mit forecast löschen
@@ -67,23 +73,26 @@ df_t.loc[df_t.location=='Germany','location']='DE'
 
 #Spalte type anpassen
 df_t.loc[df_t.variable=='median','type']='point'
+df_t.loc[df_t.variable=='lower_95','type']='quantile'
 df_t.loc[df_t.variable=='lower_90','type']='quantile'
 df_t.loc[df_t.variable=='lower_50','type']='quantile'
 df_t.loc[df_t.variable=='lower_20','type']='quantile'
 df_t.loc[df_t.variable=='upper_20','type']='quantile'
 df_t.loc[df_t.variable=='upper_50','type']='quantile'
 df_t.loc[df_t.variable=='upper_90','type']='quantile'
+df_t.loc[df_t.variable=='upper_95','type']='quantile'
 
 #Spalte Quantile einfügen und mit Werten befüllen
 df_t.insert(5, 'quantile', '', True)
 df_t.loc[df_t.variable=='median','quantile']='NA'
+df_t.loc[df_t.variable=='lower_95','quantile']='0.025'
 df_t.loc[df_t.variable=='lower_90','quantile']='0.05'
 df_t.loc[df_t.variable=='lower_50','quantile']='0.25'
 df_t.loc[df_t.variable=='lower_20','quantile']='0.4'
 df_t.loc[df_t.variable=='upper_20','quantile']='0.6'
 df_t.loc[df_t.variable=='upper_50','quantile']='0.75'
 df_t.loc[df_t.variable=='upper_90','quantile']='0.95'
-
+df_t.loc[df_t.variable=='upper_95','quantile']='0.975'
 
 #Spalte variable entfernen
 df_t.drop('variable', axis=1, inplace=True)
