@@ -9,7 +9,7 @@ Created on Wed May 19 12:16:18 2021
 import pandas as pd
 
 #Excel-Datei einlesen
-path= './data-raw/Epiforecast/2020-12-01_epiforecast_raw.csv'
+path= './data-raw/Epiforecast/2020-12-31_epiforecast_raw.csv'
 df= pd.read_csv(path, delimiter= ',')
 
 #Datum extrahieren aus dem pfad
@@ -21,7 +21,7 @@ datum=help2.split('_',1)
 df.insert(0, 'data_version', datum[0], True)
 
 #Spalte target
-df.insert(1, 'target', '14 day R', True)
+df.insert(1, 'target', '1 day R', True)
 
 #Spalte date und country tauschen
 def swap_columns(df, c1, c2):
