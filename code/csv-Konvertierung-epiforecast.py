@@ -9,7 +9,7 @@ Created on Wed May 19 12:16:18 2021
 import pandas as pd
 
 #Excel-Datei einlesen
-path= './data-raw/Epiforecast/2020-12-31_epiforecast_raw.csv'
+path= './data-raw/Epiforecast/2021-01-31_epiforecast_raw.csv'
 df= pd.read_csv(path, delimiter= ',')
 
 #Datum extrahieren aus dem pfad
