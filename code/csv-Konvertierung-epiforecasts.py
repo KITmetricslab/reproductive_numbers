@@ -9,7 +9,7 @@ Created on Wed May 19 12:16:18 2021
 import pandas as pd
 
 #Excel-Datei einlesen
-path= './data-raw/Epiforecast/2021-05-31_epiforecast_raw.csv'
+path= './data-raw/epiforecasts/2021-05-31_epiforecast_raw.csv'
 df= pd.read_csv(path, delimiter= ',')
 
 #Datum extrahieren aus dem pfad
@@ -98,4 +98,4 @@ df_t.loc[df_t.variable=='upper_95','quantile']='0.975'
 df_t.drop('variable', axis=1, inplace=True)
 
 #Datei exportieren
-df_t.to_csv('./data-processed/Epiforecast/'+datum[0]+'_epiforecast_processed.csv', index=False)
+df_t.to_csv('./data-processed/epiforecast/'+datum[0]+'_epiforecasts.csv', index=False)
