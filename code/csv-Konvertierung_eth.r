@@ -19,8 +19,8 @@ for (row in seq(1, nrow(df2))) {
 }
 colnames(output_dataframe1) <- cnames
 colnames(output_dataframe2) <- cnames
-output_filename1 <- paste("data-processed/ETH Zürich/Cori_slidingWindow/", data_version, "_eth_cori_slidingWindow.csv", sep = "")
-output_filename2 <- paste("data-processed/ETH Zürich/Cori_step/", data_version, "_eth_cori_step.csv", sep = "")
+output_filename1 <- paste("data-processed/ETHZ_sliding_window/", data_version, "-ETHZ_sliding_window.csv", sep = "")
+output_filename2 <- paste("data-processed/ETHZ_step/", data_version, "-ETHZ_step.csv", sep = "")
 filename_raw <- paste("data-raw/ETH Zürich/", data_version, "_eth_raw.csv", sep = "")
 
 write.csv(output_dataframe1, output_filename1, row.names = FALSE)
