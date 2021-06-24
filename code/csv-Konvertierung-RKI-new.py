@@ -11,7 +11,7 @@ import pandas as pd
 import datetime
 
 #CSV-Datei mit den neuen Daten einlesen
-path= './data-raw/RKI/Nowcast_R_2021-05-31.csv'
+path= './data-raw/RKI/Nowcast_R_2021-03-16.csv'
 df_rki= pd.read_csv(path, delimiter= ',')
 
 #Datum extrahieren aus dem pfad
@@ -70,6 +70,17 @@ four_day_r_tr['type'].replace({'OG_PI_4_Tage_R_Wert':'quantile'}, inplace=True)
 #Spalte location einfügen
 four_day_r_tr.insert(2, 'location', 'DE', True)
 
+#alle Zeilen ohne Werte entfernen
+four_day_r_tr.drop(four_day_r_tr[four_day_r_tr['value'] == '.'].index, inplace = True)
+four_day_r_tr.dropna(inplace = True)
+
+#Spalten in die richtige Reihenfolge bringen
+columnsTitles=['data_version', 'target', 'date', 'location', 'type', 'quantile', 'value']
+four_day_r_tr=four_day_r_tr.reindex(columns=columnsTitles)
+
+#Datei abspeichern
+four_day_r_tr.to_csv('./data-processed/'+datum[0]+'-RKI_4day.csv', index=False)
+
 
 #Daten für den 7-Tage-Schätzer transformieren
 #Neue Spalte target einfügen 
@@ -97,20 +108,16 @@ seven_day_r_tr['type'].replace({'OG_PI_7_Tage_R_Wert': 'quantile'}, inplace=True
 #Spalte location einfügen
 seven_day_r_tr.insert(3, 'location', 'DE', True)
 
-#beide Tabellen untereinanderfügen
-df_rki_merged= pd.concat([four_day_r_tr,seven_day_r_tr], axis=0)
-
 #alle Zeilen ohne Werte entfernen
-df_rki_merged.drop(df_rki_merged[df_rki_merged['value'] == '.'].index, inplace = True)
-df_rki_merged.dropna(inplace = True)
-
+seven_day_r_tr.drop(seven_day_r_tr[seven_day_r_tr['value'] == '.'].index, inplace = True)
+seven_day_r_tr.dropna(inplace = True)
 
 #Spalten in die richtige Reihenfolge bringen
 columnsTitles=['data_version', 'target', 'date', 'location', 'type', 'quantile', 'value']
-df_rki_merged=df_rki_merged.reindex(columns=columnsTitles)
+four_day_r_tr=four_day_r_tr.reindex(columns=columnsTitles)
+
+#Datei exportieren
+seven_day_r_tr.to_csv('./data-processed/'+datum[0]+'-RKI_7day.csv', index=False)
 
 
-#neue Datei abspeichern
-#Datum im Namen anpassen!
-df_rki_merged.to_csv('./data-processed/RKI/'+datum[0]+'-RKI.csv', index=False)
 
