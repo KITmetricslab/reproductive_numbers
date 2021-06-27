@@ -10,5 +10,5 @@ for (row in seq(1, nrow(input_dataframe))) {
     output_dataframe <- rbind(output_dataframe, list(input_dataframe[row + 7, 1], "7 day R", input_dataframe[row, 1], "DE", "quantile", help[3], input_dataframe[row, 6]))
 }
 colnames(output_dataframe) <- cnames
-output_filename <- paste("data-processed/TU Ilmenau/", input_dataframe[nrow(input_dataframe), 1], "-Ilmenau_processed.csv", sep = "")
+output_filename <- paste("data-processed/ilmenau/", input_dataframe[nrow(input_dataframe), 1], "-ilmenau.csv", sep = "")
 write.csv(output_dataframe, output_filename, row.names = FALSE)
