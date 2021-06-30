@@ -79,7 +79,7 @@ columnsTitles=['data_version', 'target', 'date', 'location', 'type', 'quantile',
 four_day_r_tr=four_day_r_tr.reindex(columns=columnsTitles)
 
 #Datei abspeichern
-four_day_r_tr.to_csv('./data-processed/'+datum[0]+'-RKI_4day.csv', index=False)
+four_day_r_tr.to_csv('./data-processed/RKI_4day/'+datum[0]+'-RKI_4day.csv', index=False)
 
 
 #Daten für den 7-Tage-Schätzer transformieren
@@ -117,7 +117,7 @@ columnsTitles=['data_version', 'target', 'date', 'location', 'type', 'quantile',
 four_day_r_tr=four_day_r_tr.reindex(columns=columnsTitles)
 
 #Datei exportieren
-seven_day_r_tr.to_csv('./data-processed/'+datum[0]+'-RKI_7day.csv', index=False)
+seven_day_r_tr.to_csv('./data-processed/RKI_7day/'+datum[0]+'-RKI_7day.csv', index=False)
 
 
 
