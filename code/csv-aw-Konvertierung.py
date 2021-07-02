@@ -62,9 +62,9 @@ seven_day_r_tr.insert(2, 'location', 'DE', True)
 groups = seven_day_r_tr.groupby(seven_day_r_tr.data_version)
 unique_version = df["data_version"].unique()
 
-#for i in unique_version:
- #   df = groups.get_group(i)
- #   df.to_csv('./data-processed/Andreas Wenzel/'+i+'-AW_7day.csv', index=False)
+for i in unique_version:
+    df = groups.get_group(i)
+    df.to_csv('./data-processed/AW_7day/'+i+'-AW_7day.csv', index=False)
 
 #Woche/Vorwoche R
 wv_r= df.iloc[:,[0,1,5,6,7]]
@@ -90,9 +90,10 @@ wv_r_tr['type'].replace({'R(t) WV (PI upper)':'quantile'}, inplace=True)
 wv_r_tr.insert(2, 'location', 'DE', True)
 
 #wv_r_tr.to_csv('./data-processed/2021-06-23-AW_WVday.csv', index=False)
+
 groups2 = wv_r_tr.groupby(wv_r_tr.data_version)
 unique_version2 = wv_r_tr["data_version"].unique()
 
-for i in unique_version2:
-    df = groups2.get_group(i)
-    df.to_csv('./data-processed/Andreas Wenzel/'+i+'-AW_WVday.csv', index=False)
+for a in unique_version2:
+    df = groups2.get_group(a)
+    df.to_csv('./data-processed/AW_WVday/'+a+'-AW_WVday.csv', index=False)
