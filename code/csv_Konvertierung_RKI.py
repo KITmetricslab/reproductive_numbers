@@ -11,7 +11,7 @@ import pandas as pd
 import datetime 
 import os
 
-path = "./data-raw/RKI/"
+path = "./data-raw/Neue daten/"
 rki= os.listdir(path)
 rki.remove('.DS_Store')
 rki.sort()
@@ -30,8 +30,16 @@ for file in rki:
     df_rki.rename(columns= {'Datum des Erkrankungsbeginns': 'date'}, inplace=True)
 
     df_rki.drop('Punktschätzer der Anzahl Neuerkrankungen (ohne Glättung)', axis=1, inplace=True)
-    df_rki.drop('Untere Grenze des 95%-Prädiktionsintervalls der Anzahl Neuerkrankungen (ohne Glä', axis=1, inplace=True)
-    df_rki.drop('Obere Grenze des 95%-Prädiktionsintervalls der Anzahl Neuerkrankungen (ohne Glät', axis=1, inplace=True)
+
+    if 'Untere Grenze des 95%-Prädiktionsintervalls der Anzahl Neuerkrankungen (ohne Glättung)' in df_rki.columns: 
+        df_rki.drop('Untere Grenze des 95%-Prädiktionsintervalls der Anzahl Neuerkrankungen (ohne Glättung)', axis=1, inplace=True)
+    elif 'Untere Grenze des 95%-Prädiktionsintervalls der Anzahl Neuerkrankungen (ohne Glä' in df_rki.columns: 
+        df_rki.drop('Untere Grenze des 95%-Prädiktionsintervalls der Anzahl Neuerkrankungen (ohne Glä', axis=1, inplace=True)
+    if 'Obere Grenze des 95%-Prädiktionsintervalls der Anzahl Neuerkrankungen (ohne Glättung)' in df_rki.columns: 
+        df_rki.drop('Obere Grenze des 95%-Prädiktionsintervalls der Anzahl Neuerkrankungen (ohne Glättung)', axis=1, inplace=True)
+    elif 'Obere Grenze des 95%-Prädiktionsintervalls der Anzahl Neuerkrankungen (ohne Glät' in df_rki.columns: 
+        df_rki.drop('Obere Grenze des 95%-Prädiktionsintervalls der Anzahl Neuerkrankungen (ohne Glät', axis=1, inplace=True)
+
     df_rki.drop('Punktschätzer der Anzahl Neuerkrankungen', axis=1, inplace=True)
     df_rki.drop('Untere Grenze des 95%-Prädiktionsintervalls der Anzahl Neuerkrankungen', axis=1, inplace=True)
     df_rki.drop('Obere Grenze des 95%-Prädiktionsintervalls der Anzahl Neuerkrankungen', axis=1, inplace=True)
@@ -53,10 +61,10 @@ for file in rki:
                              'Obere Grenze des 95%-Prädiktionsintervalls der Reproduktionszahl R'], 
                 value_name="value")
 
-    four_day_r_tr.insert(3, 'quantil', '', True)
-    four_day_r_tr.loc[four_day_r_tr.variable=='Punktschätzer der Reproduktionszahl R','quantil']='NA'
-    four_day_r_tr.loc[four_day_r_tr.variable=='Untere Grenze des 95%-Prädiktionsintervalls der Reproduktionszahl R','quantil']='0.025'
-    four_day_r_tr.loc[four_day_r_tr.variable=='Obere Grenze des 95%-Prädiktionsintervalls der Reproduktionszahl R','quantil']='0.975'
+    four_day_r_tr.insert(3, 'quantile', '', True)
+    four_day_r_tr.loc[four_day_r_tr.variable=='Punktschätzer der Reproduktionszahl R','quantile']='NA'
+    four_day_r_tr.loc[four_day_r_tr.variable=='Untere Grenze des 95%-Prädiktionsintervalls der Reproduktionszahl R','quantile']='0.025'
+    four_day_r_tr.loc[four_day_r_tr.variable=='Obere Grenze des 95%-Prädiktionsintervalls der Reproduktionszahl R','quantile']='0.975'
 
     four_day_r_tr.rename(columns= {'variable': 'type'}, inplace=True)
     four_day_r_tr['type'].replace({'Punktschätzer der Reproduktionszahl R':'point'}, inplace=True)
