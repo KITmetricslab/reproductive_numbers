@@ -1,6 +1,5 @@
 import pandas as pd 
 import os
-from pathlib import Path
 
 path = "./data-processed/epiforecasts/"
 epiforecasts= os.listdir(path)
