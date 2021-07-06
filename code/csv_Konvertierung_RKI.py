@@ -11,7 +11,7 @@ import pandas as pd
 import datetime 
 import os
 
-path = "./data-raw/Neue daten/"
+path = "./data-raw/Nowcasting_R_Werte/"
 rki= os.listdir(path)
 rki.remove('.DS_Store')
 rki.sort()
