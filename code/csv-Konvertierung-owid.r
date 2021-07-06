@@ -1,7 +1,7 @@
 input_filename <- "https://covid.ourworldindata.org/data/owid-covid-data.csv"
 input_dataframe <- read.csv(input_filename, sep = ",")
 data_germany <- input_dataframe[which(input_dataframe$iso_code == "DEU"), ]
-write.csv(data_germany, paste("data-raw/OWID/", input_dataframe[nrow(input_dataframe), 4], "-owid_raw.csv", sep = ""), row.names = FALSE)
+write.csv(data_germany, paste("data-raw/owid/", input_dataframe[nrow(input_dataframe), 4], "-owid_raw.csv", sep = ""), row.names = FALSE)
 output_dataframe <- data.frame()
 cnames <- c("data_version", "target", "date", "location", "type", "quantile", "value")
 for (row in seq(1, nrow(data_germany))) {
