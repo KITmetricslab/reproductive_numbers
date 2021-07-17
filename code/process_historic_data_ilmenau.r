@@ -11,6 +11,6 @@ for (f in files) {
 
     }
     colnames(output_dataframe) <- cnames
-    output_filename <- paste("data-processed/TU Ilmenau/",input_dataframe[nrow(input_dataframe), 1], "-ilmenau_processed.csv", sep = "")
+    output_filename <- paste("data-processed/ilmenau/",input_dataframe[nrow(input_dataframe), 1], "-ilmenau.csv", sep = "")
     write.csv(output_dataframe, output_filename, row.names = FALSE)
 }
