@@ -19,12 +19,12 @@ rki.sort()
 print(rki)
 
 for file in rki:
-    df_rki= pd.read_csv(path+'/'+file, delimiter=",", index=False)            
+    df_rki= pd.read_csv(path+'/'+file, delimiter=",")            
 
     #df_rki['type'].replace({'UG_PI_Reproduktionszahl_R':'quantile'}, inplace=True)
     #df_rki['value'].apply(lambda x: str(x).replace(',','.'))
     df_rki.drop('Unnamed: 0', axis=1, inplace=True)
-    df_rki['quantile'].replace({'': 'NA'}, inplace=True)
+    df_rki['quantile'].replace({' ': 'NA'}, inplace=True)
     df_rki['type'].replace({'quantil': 'quantile'}, inplace=True)
 
     df_rki.to_csv(path+'/'+file, index=False)
