@@ -11,9 +11,9 @@ import pandas as pd
 import datetime 
 import os
 
-path = "./data-processed/RKI_4day/"
+path = "./data-processed/RKI_7day/"
 rki= os.listdir(path)
-rki.remove('.DS_Store')
+#rki.remove('.DS_Store')
 rki.sort()
 
 print(rki)
@@ -30,7 +30,9 @@ def autoconvert_datetime(value):
     return value  # let it be if it doesn't match
 
 for file in rki:
-    df_rki= pd.read_csv(path+'/'+file, delimiter=",")   
+    df_rki= pd.read_csv(path+'/'+file, delimiter=",")  
+
+    df_rki.rename({'quantil': 'quantile'}, axis=1, inplace=True) 
 
     df_rki['date'] = df_rki['date'].apply(autoconvert_datetime)         
 
