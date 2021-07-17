@@ -1,4 +1,4 @@
-,data_version,target,date,location,type,quantile,value
+Unnamed: 0,data_version,target,date,location,type,quantile,value
 0,2020-09-16,4 day R,2020-03-06,DE,point,,2.26
 1,2020-09-16,4 day R,2020-03-07,DE,point,,2.58
 2,2020-09-16,4 day R,2020-03-08,DE,point,,2.75

@@ -1,4 +1,4 @@
-,data_version,target,date,location,type,quantile,value
+Unnamed: 0,data_version,target,date,location,type,quantile,value
 0,2021-04-08,4 day R,2020-03-06,DE,point,,2.25
 1,2021-04-08,4 day R,2020-03-07,DE,point,,2.58
 2,2021-04-08,4 day R,2020-03-08,DE,point,,2.75
