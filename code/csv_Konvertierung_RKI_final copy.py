@@ -34,7 +34,17 @@ for file in rki:
 
     df_rki.rename({'quantil': 'quantile'}, axis=1, inplace=True) 
 
-    df_rki['date'] = df_rki['date'].apply(autoconvert_datetime)         
+    df_rki['date'] = df_rki['date'].apply(autoconvert_datetime)  
+
+    i=0
+    for row in df_rki.date:
+        try:
+            new_date = datetime.datetime.strptime(row, '%d.%m.%Y').strftime('%Y-%m-%d')
+            df_rki.date[i]=new_date
+        except Exception as e:
+            pass
+        i=i+1            
+       
 
     #df_rki['type'].replace({'UG_PI_Reproduktionszahl_R':'quantile'}, inplace=True)
     df_rki['value'].apply(lambda x: str(x).replace(',','.'))

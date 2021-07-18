@@ -45,6 +45,12 @@ for file in rki:
 
     #df_rki['type'].replace({'UG_PI_Reproduktionszahl_R':'quantile'}, inplace=True)
     df_rki['value'].apply(lambda x: str(x).replace(',','.'))
+
+    for i in df_rki.value: 
+        try: 
+            float(i.replace(',','.'))
+        except Exception as e: 
+            pass
     #df_rki.drop('Unnamed: 0', axis=1, inplace=True)
     #df_rki['quantile'].replace({'nan': 'NA'}, inplace=True)
     df_rki['quantile']=df_rki['quantile'].fillna('NA')
