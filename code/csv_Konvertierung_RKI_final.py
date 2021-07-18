@@ -19,9 +19,9 @@ rki.sort()
 print(rki)
 
 def autoconvert_datetime(value):
-    formats = ['%d.%m.%Y', '%Y-%m-%d']  # formats to try
+    format = '%d.%m.%Y'  # formats to try
     result_format = '%Y-%m-%d'  # output format
-    for dt_format in formats:
+    for dt_format in format:
         try:
             dt_obj = datetime.strptime(value, dt_format)
             return dt_obj.strftime(result_format)
@@ -32,7 +32,16 @@ def autoconvert_datetime(value):
 for file in rki:
     df_rki= pd.read_csv(path+'/'+file, delimiter=",")   
 
-    df_rki['date'] = df_rki['date'].apply(autoconvert_datetime)         
+    #df_rki['date'] = df_rki['date'].apply(autoconvert_datetime) 
+
+    i=0
+    for row in df_rki.date:
+        try:
+            new_date = datetime.datetime.strptime(row, '%d.%m.%Y').strftime('%Y-%m-%d')
+            df_rki.date[i]=new_date
+        except Exception as e:
+            pass
+        i=i+1            
 
     #df_rki['type'].replace({'UG_PI_Reproduktionszahl_R':'quantile'}, inplace=True)
     df_rki['value'].apply(lambda x: str(x).replace(',','.'))
