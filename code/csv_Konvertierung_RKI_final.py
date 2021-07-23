@@ -46,6 +46,13 @@ for file in rki:
     #df_rki['type'].replace({'UG_PI_Reproduktionszahl_R':'quantile'}, inplace=True)
     df_rki['value'].apply(lambda x: str(x).replace(',','.'))
 
+    if type(df_rki.value[1])==str:
+        i=0
+        for i in df_rki.value: 
+            help= i.replace(',', '.')
+            df_rki.value[i]=help
+            i=i+1
+
     for i in df_rki.value: 
         try: 
             float(i.replace(',','.'))
