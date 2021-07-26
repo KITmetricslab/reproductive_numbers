@@ -5,9 +5,9 @@ output_dataframe <- data.frame()
 cnames <- c("data_version", "target", "date", "location", "type", "quantile", "value")
 help <- c(NA, 0.025, 0.975)
 for (row in seq(1, nrow(input_dataframe))) {
-    output_dataframe <- rbind(output_dataframe, list(input_dataframe[row + 7, 1], "7 day R", input_dataframe[row, 1], "DE", "point", help[1], input_dataframe[row, 3]))
-    output_dataframe <- rbind(output_dataframe, list(input_dataframe[row + 7, 1], "7 day R", input_dataframe[row, 1], "DE", "quantile", help[2], input_dataframe[row, 5]))
-    output_dataframe <- rbind(output_dataframe, list(input_dataframe[row + 7, 1], "7 day R", input_dataframe[row, 1], "DE", "quantile", help[3], input_dataframe[row, 6]))
+    output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 1], "7 day R", input_dataframe[row, 1], "DE", "point", help[1], input_dataframe[row, 3]))
+    output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 1], "7 day R", input_dataframe[row, 1], "DE", "quantile", help[2], input_dataframe[row, 5]))
+    output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 1], "7 day R", input_dataframe[row, 1], "DE", "quantile", help[3], input_dataframe[row, 6]))
 }
 colnames(output_dataframe) <- cnames
 output_filename <- paste("data-processed/ilmenau/", input_dataframe[nrow(input_dataframe), 1], "-ilmenau.csv", sep = "")
