@@ -47,14 +47,14 @@ for (f in files_deu) {
         for (row in seq(1, nrow(input_dataframe))) {
         output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 3], "7 day R", input_dataframe[row, 3], "CH", "point", "NA", input_dataframe[row, 12]))
         output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 3], "7 day R", input_dataframe[row, 3], "CH", "quantile", "0.025", input_dataframe[row, 14]))
-        output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 3], "7 day R", input_dataframe[row, 3], "Ch", "quantile", "0.975", input_dataframe[row, 15]))
+        output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 3], "7 day R", input_dataframe[row, 3], "CH", "quantile", "0.975", input_dataframe[row, 15]))
 
         }
     } else {
         for (row in seq(1, nrow(input_dataframe))) {
         output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 1], "7 day R", input_dataframe[row, 3], "CH", "point", "NA", input_dataframe[row, 3]))
-        output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 1], "7 day R", input_dataframe[row, 3], "Ch", "quantile", "0.025", input_dataframe[row, 5]))
-        output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 1], "7 day R", input_dataframe[row, 3], "Ch", "quantile", "0.975", input_dataframe[row, 6]))
+        output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 1], "7 day R", input_dataframe[row, 3], "CH", "quantile", "0.025", input_dataframe[row, 5]))
+        output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 1], "7 day R", input_dataframe[row, 3], "CH", "quantile", "0.975", input_dataframe[row, 6]))
 
         }
     }
