@@ -1,4 +1,4 @@
-files <- list.files("data-raw/SDSC")
+files <- list.files("data-raw/SDSC", pattern = "*_re_*")
 for (f in files) {
     input_filename <- paste("data-raw/SDSC/", f, sep = "")
     input_3_series <- read.csv(input_filename, sep = ",") 
@@ -16,9 +16,9 @@ for (f in files) {
     # Austria
     input_dataframe <- input_dataframe_all[input_dataframe_all$country == 'Austria', ]
     for (row in seq(1, nrow(input_dataframe))) {
-        output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 2], paste(7, " day R", sep = ""), input_dataframe[row, 2], "AU", "point", "NA", input_dataframe[row, 4]))
-        output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 2], paste(7, " day R", sep = ""), input_dataframe[row, 2], "AU", "quantile", "0.025", input_dataframe[row, 3]))
-        output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 2], paste(7, " day R", sep = ""), input_dataframe[row, 2], "AU", "quantile", "0.975", input_dataframe[row, 5]))
+        output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 2], paste(7, " day R", sep = ""), input_dataframe[row, 2], "AT", "point", "NA", input_dataframe[row, 4]))
+        output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 2], paste(7, " day R", sep = ""), input_dataframe[row, 2], "AT", "quantile", "0.025", input_dataframe[row, 3]))
+        output_dataframe <- rbind(output_dataframe, list(input_dataframe[nrow(input_dataframe), 2], paste(7, " day R", sep = ""), input_dataframe[row, 2], "AT", "quantile", "0.975", input_dataframe[row, 5]))
 
     }
     # Switzerland

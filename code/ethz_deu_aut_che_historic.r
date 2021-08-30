@@ -64,27 +64,27 @@ for (f in files) {
 
 
         for (row in seq(1, nrow(df1))) {
-            output_dataframe1 <- rbind(output_dataframe1, list(data_version, "3 day R", df1[row, 6], "AU", "point", "NA", df1[row, 7]))
-            output_dataframe1 <- rbind(output_dataframe1, list(data_version, "3 day R", df1[row, 6], "AU", "quantile", "0.025", df1[row, 9]))
-            output_dataframe1 <- rbind(output_dataframe1, list(data_version, "3 day R", df1[row, 6], "AU", "quantile", "0.975", df1[row, 8]))
+            output_dataframe1 <- rbind(output_dataframe1, list(data_version, "3 day R", df1[row, 6], "AT", "point", "NA", df1[row, 7]))
+            output_dataframe1 <- rbind(output_dataframe1, list(data_version, "3 day R", df1[row, 6], "AT", "quantile", "0.025", df1[row, 9]))
+            output_dataframe1 <- rbind(output_dataframe1, list(data_version, "3 day R", df1[row, 6], "AT", "quantile", "0.975", df1[row, 8]))
         }
         for (row in seq(1, nrow(df2))) {
-            output_dataframe2 <- rbind(output_dataframe2, list(data_version, "7 day R", df2[row, 6], "AU", "point", "NA", df2[row, 7]))
-            output_dataframe2 <- rbind(output_dataframe2, list(data_version, "7 day R", df2[row, 6], "AU", "quantile", "0.025", df2[row, 9]))
-            output_dataframe2 <- rbind(output_dataframe2, list(data_version, "7 day R", df2[row, 6], "AU", "quantile", "0.975", df2[row, 8]))
+            output_dataframe2 <- rbind(output_dataframe2, list(data_version, "7 day R", df2[row, 6], "AT", "point", "NA", df2[row, 7]))
+            output_dataframe2 <- rbind(output_dataframe2, list(data_version, "7 day R", df2[row, 6], "AT", "quantile", "0.025", df2[row, 9]))
+            output_dataframe2 <- rbind(output_dataframe2, list(data_version, "7 day R", df2[row, 6], "AT", "quantile", "0.975", df2[row, 8]))
         }
         if(nrow(df3) > 0) {
             for (row in seq(1, nrow(df3))) {
-                output_dataframe3 <- rbind(output_dataframe3, list(data_version, "3 day R", df3[row, 6], "AU", "point", "NA", df3[row, 7]))
-                output_dataframe3 <- rbind(output_dataframe3, list(data_version, "3 day R", df3[row, 6], "AU", "quantile", "0.025", df3[row, 9]))
-                output_dataframe3 <- rbind(output_dataframe3, list(data_version, "3 day R", df3[row, 6], "AU", "quantile", "0.975", df3[row, 8]))
+                output_dataframe3 <- rbind(output_dataframe3, list(data_version, "3 day R", df3[row, 6], "AT", "point", "NA", df3[row, 7]))
+                output_dataframe3 <- rbind(output_dataframe3, list(data_version, "3 day R", df3[row, 6], "AT", "quantile", "0.025", df3[row, 9]))
+                output_dataframe3 <- rbind(output_dataframe3, list(data_version, "3 day R", df3[row, 6], "AT", "quantile", "0.975", df3[row, 8]))
             }
         }
         if(nrow(df4) > 0) {
             for (row in seq(1, nrow(df4))) {
-                output_dataframe4 <- rbind(output_dataframe4, list(data_version, "7 day R", df4[row, 6], "AU", "point", "NA", df4[row, 7]))
-                output_dataframe4 <- rbind(output_dataframe4, list(data_version, "7 day R", df4[row, 6], "AU", "quantile", "0.025", df4[row, 9]))
-                output_dataframe4 <- rbind(output_dataframe4, list(data_version, "7 day R", df4[row, 6], "AU", "quantile", "0.975", df4[row, 8]))
+                output_dataframe4 <- rbind(output_dataframe4, list(data_version, "7 day R", df4[row, 6], "AT", "point", "NA", df4[row, 7]))
+                output_dataframe4 <- rbind(output_dataframe4, list(data_version, "7 day R", df4[row, 6], "AT", "quantile", "0.025", df4[row, 9]))
+                output_dataframe4 <- rbind(output_dataframe4, list(data_version, "7 day R", df4[row, 6], "AT", "quantile", "0.975", df4[row, 8]))
             }
         }
     }
