@@ -7,18 +7,19 @@ Created on Sat May  1 14:25:52 2021
 """
 
 #notwendige Importe tätigen 
+from os import sep
 import pandas as pd
 import datetime
 import requests
 import io
 
 #Datum eingeben
-datum= '2021-06-05'
+datum= '2021-10-05'
 
 #CSV-Datei mit den neuen Daten einlesen
 XLSX_RKI = 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Projekte_RKI/Nowcasting_Zahlen_csv.csv?__blob=publicationFile'
 rki = requests.get(XLSX_RKI).content
-df_rki = pd.read_csv(io.StringIO(rki.decode('Latin1')), sep=';')
+df_rki = pd.read_csv('https://github.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung/blob/main/Nowcast_R_aktuell.csv', error_bad_lines=False, engine ='python')#pd.read_csv(io.StringIO(rki.decode('Latin1')), sep=';')
 
 #for column in df_rki: print(column)
 
