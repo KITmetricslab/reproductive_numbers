@@ -8,9 +8,13 @@ Created on Thu Aug 19 14:42:18 2021
 
 import pandas as pd
 import os
+import re
 
-path = "./data-raw/rtlive/"
-epi = os.listdir(path)
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
+path = "../data-raw/rtlive"
+epi = [f for f in os.listdir(path) if re.match(".*all.*.csv", f)]
 epi.sort()
 
 for file in epi:
@@ -47,4 +51,4 @@ for file in epi:
     )
 
     # Datei exportieren
-    df_t.to_csv("./data-processed/rtlive/" + datum + "-rtlive.csv", index=False)
+    df_t.to_csv("../data-processed/rtlive/" + datum + "-rtlive.csv", index=False)
