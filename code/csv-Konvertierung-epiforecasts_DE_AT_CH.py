@@ -18,7 +18,7 @@ epi.sort()
 
 print(epi)
 
-for file in epi:
+for file in epi[epi.index('2020-09-17_epiforecast_raw.csv'):]: # Spalte "mean" erst ab 17.09.2020 vorhanden
     df= pd.read_csv(path+'/'+file, delimiter= ',')
 
     #Datum extrahieren aus dem pfad
