@@ -14,7 +14,6 @@ delta = datetime.timedelta(days=1)
 while d1 < today:
     # empty DataFrame:
     df = pd.DataFrame()
-
     # flag to indicate if there exists a file for this date for at least one country, 
     # otherwise don't write a (empty) file:
     date_found = False
@@ -42,6 +41,8 @@ while d1 < today:
             df = df.append(pd.DataFrame({'data_version': [str(d1), str(d1), str(d1)], 'target': ["7 day R", "7 day R", "7 day R"], 'date': [data_che.iloc[i, 0], data_che.iloc[i, 0], data_che.iloc[i, 0]], 'location': ["CH", "CH", "CH"], 'type': ["point", "quantile", "quantile"], 'quantile': ["NA", "0.025", "0.975"], 'value': [data_che.iloc[i, 2], data_che.iloc[i, 4], data_che.iloc[i, 5]]}))
         
     if date_found: # don't write an empty file, if none of the countries reported for this date
+        print('found')
+        df = df.drop_duplicates()
         df.to_csv("../data-processed/ilmenau/" + str(d1) + "-ilmenau.csv", index=False, index_label=False)
     
     # update the date
