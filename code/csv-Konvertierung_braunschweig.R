@@ -1,5 +1,7 @@
+library(data.table)
+
 setwd("..")
-getwd() # should be "".../reproductive_numbers/data-raw/Braunschweig"
+getwd() # should contain the folder "data-raw/Braunschweig"
 
 file_path <- "data-raw/Braunschweig/"
 save_path <- "data-processed/Braunschweig/"
