@@ -1,4 +1,4 @@
-# This script extracts the eestimated effective reproductive numbers and uncertainty intervals
+# This script extracts the estimated effective reproductive numbers and uncertainty intervals
 # from the svg files of the plots provided in the PDF reports (svgs generated using OpenOffice Draw
 # unfortunately the conversion to svg seems to depend on the software used)
 
