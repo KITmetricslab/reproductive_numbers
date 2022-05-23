@@ -1,14 +1,54 @@
-input_filename <- "https://github.com/crondonm/TrackingR/blob/main/Estimates-Database/database.csv"
-input_dataframe <- read.csv(input_filename, header = TRUE, sep = ",")
-write.csv(input_dataframe, paste("data-raw/globalrt/", input_dataframe[nrow(input_dataframe), 9], "_globalrt_raw.csv", sep = ""), row.names = FALSE)
-output_dataframe <- data.frame()
-cnames <- c("data_version", "target", "date", "location", "type", "quantile", "value")
-help <- c(NA, 0.025, 0.975)
-for (row in seq(1, nrow(input_dataframe))) {
-    output_dataframe <- rbind(output_dataframe, list(input_dataframe[row, 9], "7 day R", input_dataframe[row, 2], "DE", "point", help[1], input_dataframe[row, 3]))
-    output_dataframe <- rbind(output_dataframe, list(input_dataframe[row, 9], "7 day R", input_dataframe[row, 2], "DE", "quantile", help[2], input_dataframe[row, 5]))
-    output_dataframe <- rbind(output_dataframe, list(input_dataframe[row, 9], "7 day R", input_dataframe[row, 2], "DE", "quantile", help[3], input_dataframe[row, 4]))
+library(data.table)
+library(dplyr)
+library(readr)
+
+setwd("..")
+getwd() # should contain the folder "data-raw/"
+
+file_paths <- paste0("data-raw/globalrt ", c("DE", "AT", "CH"), "/")
+save_path_default <- "data-processed/globalrt_"
+
+files_raw <- list.files(file_paths[1], full.names = F)
+
+for (file in files_raw[93:206]) {
+  cat(substr(file, 1, 10), "... \n")
+  
+  if (exists("data_proc")) rm(data_proc)
+  
+  for(file_path in file_paths){
+    country <- substr(file_path, 19, 20)
+    
+    if (file %in% list.files(file_path, full.names = F)){
+      print(country)
+      
+      data_raw <- setDT(read.csv(paste0(file_path, file)))
+      data <- data_raw %>%
+        dplyr::select(last_updated, days_infectious, Date, R, ci_95_l, ci_95_u) %>%
+        rename(data_version = last_updated, target = days_infectious, date = Date) %>%
+        #mutate(target = paste(target, "day R")) %>%
+        melt(measure.vars = c("R", "ci_95_l", "ci_95_u")) %>%
+        mutate(type = plyr::mapvalues(variable,
+                                      c("R", "ci_95_l", "ci_95_u"),
+                                      c("point", "quantile", "quantile")),
+               quantile =  plyr::mapvalues(variable,
+                                           c("R", "ci_95_l", "ci_95_u"),
+                                           c(NA,   0.025,     0.975)),
+               location = country) %>%
+        dplyr::select(-variable) %>%
+        setcolorder(c("data_version", "target", "date", "location", "type", "quantile", "value"))
+      data <- data[order(target, date, type, quantile)]
+      
+      if (!exists("data_proc")){
+        data_proc <- data
+      } else
+        data_proc <- rbind(data_proc, data)
+    }
+  }
+  
+  for (target in 5:10){
+    save_path <- paste0(save_path_default, target, "d/")
+    data_proc <- data_proc[target == target] %>%
+      mutate(target = paste(target, "day R"))
+    write_csv(data_proc, paste0(save_path, substr(file, 1, 20), target, "d.csv"))
+  }
 }
-colnames(output_dataframe) <- cnames
-output_filename <- paste("data-processed/globalrt/", input_dataframe[nrow(input_dataframe), 9], "-globalrt.csv", sep = "")
-write.csv(output_dataframe, output_filename, row.names = FALSE)
