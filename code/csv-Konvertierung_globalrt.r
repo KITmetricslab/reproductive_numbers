@@ -49,6 +49,6 @@ for (file in files_raw[93:206]) {
     save_path <- paste0(save_path_default, target, "d/")
     data_proc <- data_proc[target == target] %>%
       mutate(target = paste(target, "day R"))
-    write_csv(data_proc, paste0(save_path, substr(file, 1, 20), target, "d.csv"))
+    write_csv(data_proc, paste0(save_path, substr(file, 1, 10), "-globalrt_", target, "d.csv"))
   }
 }
