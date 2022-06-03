@@ -10,7 +10,7 @@ save_path_default <- "data-processed/globalrt_"
 
 files_raw <- list.files(file_paths[1], full.names = F)
 
-for (file in files_raw[93:206]) {
+for (file in files_raw[40:267]) {
   cat(substr(file, 1, 10), "... \n")
   
   if (exists("data_proc")) rm(data_proc)
@@ -36,7 +36,7 @@ for (file in files_raw[93:206]) {
                location = country) %>%
         dplyr::select(-variable) %>%
         setcolorder(c("data_version", "target", "date", "location", "type", "quantile", "value"))
-      data <- data[order(target, date, type, quantile)]
+      data <- data[order(data$target, data$date, data$type, data$quantile),]
       
       if (!exists("data_proc")){
         data_proc <- data
@@ -45,10 +45,10 @@ for (file in files_raw[93:206]) {
     }
   }
   
-  for (target in 5:10){
-    save_path <- paste0(save_path_default, target, "d/")
-    data_proc <- data_proc[target == target] %>%
-      mutate(target = paste(target, "day R"))
-    write_csv(data_proc, paste0(save_path, substr(file, 1, 10), "-globalrt_", target, "d.csv"))
+  for (t in 5:10){
+    save_path <- paste0(save_path_default, t, "d/")
+    data_proc_t <- data_proc[data_proc$target == t,] %>%
+      mutate(target = paste(t, "day R"))
+    write_csv(data_proc_t, paste0(save_path, substr(file, 1, 10), "-globalrt_", t, "d.csv"))
   }
 }
