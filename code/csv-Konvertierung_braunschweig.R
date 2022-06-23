@@ -12,15 +12,16 @@ files_raw <- list.files(file_path, full.names = F)
 # choose window size (published is 7 day average)
 ws <- 7
 
-for (file in files_raw[274:314]) {
+for (file in files_raw) {
   if (file %>% endsWith(".csv")){
     print(substr(file, 1, 23))
     data_raw <- setDT(read.csv(paste0(file_path, file)))
-    data <- data_raw[, as.list(quantile(.SD, c(.025, .25, .5, .75, .975), na.rm = TRUE)), by = c("date")]
+    # data <- data_raw[, as.list(quantile(.SD, c(.025, .25, .5, .75, .975), na.rm = TRUE)), by = c("date")]
+    data <- data_raw[, .(`50%` = rowMeans(.SD)), by = c("date")]
     
     # calculate average over 7 (ws) days
     data_avg_list <- frollmean(data[,!"date"], n=ws)
-    for(q in 2:6){
+    for(q in 2:dim(data)[2]){
       data[,q] <- data_avg_list[[q-1]]
     }
     
