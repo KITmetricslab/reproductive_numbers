@@ -10,8 +10,6 @@ getwd()
 methods <- c("Braunschweig", "epiforecasts", "ETHZ_sliding_window",
              "globalrt_7d", "ilmenau", "RKI_7day", "rtlive", "SDSC")
 
-end_date <- as_date("2021-05-01")
-
 pub_delays <- read.csv("../Rt_estimate_reconstruction/otherFiles/pub_delays.csv", row.names = 1)
 
 for (method in methods){
