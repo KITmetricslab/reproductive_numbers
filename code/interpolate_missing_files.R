@@ -10,9 +10,7 @@ getwd()
 methods <- c("Braunschweig", "epiforecasts", "ETHZ_sliding_window",
              "globalrt_7d", "ilmenau", "RKI_7day", "rtlive", "SDSC")
 
-start_date <- as_date("2020-10-01")
 end_date <- as_date("2021-05-01")
-target_dates <- seq(start_date, end_date, by = "day")
 
 pub_delays <- read.csv("../Rt_estimate_reconstruction/otherFiles/pub_delays.csv", row.names = 1)
 
@@ -23,11 +21,13 @@ for (method in methods){
   path_save <- paste0("data-processed/", method, "/interpolated")
   ifelse(!dir.exists(path_save), dir.create(path_save), FALSE)
   
-  # determine dates which have to be interpolated
+  # determine existing dates
   dates <- list.files(path_estimates, pattern = "\\d{4}-\\d{2}-\\d{2}") %>%
     substr(1,10) %>%
     as_date
-  dates <- dates[dates %in% target_dates]
+
+  # determine dates which have to be interpolated
+  target_dates <- seq(min(dates), max(dates), by = "day")
   missing <- rep(NA, length(target_dates))
   names(missing) <- target_dates
   missing[as.character(dates)] <- F
