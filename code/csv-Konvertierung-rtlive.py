@@ -38,8 +38,8 @@ for file in epi:
         value_name="value",
     ).rename({"variable": "quantile"}, axis=1)
 
-    # remove columns containing estimates for dates after data_version (probably forecasts)
-    df_t = df_t.drop(df_t[df_t.data_version < df_t.date].index)
+    # remove columns containing estimates for dates after data_version
+    # df_t = df_t.drop(df_t[df_t.data_version < df_t.date].index)
 
     # insert column with type of the value
     df_t.insert(loc=5, column="type", value="quantile", allow_duplicates=True)
