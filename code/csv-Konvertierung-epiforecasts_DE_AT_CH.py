@@ -10,15 +10,10 @@ Created on Wed May 19 12:16:18 2021
 import pandas as pd
 import os
 
-os.chdir(
-    os.path.abspath(
-        os.path.join(
-            os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir)),
-            os.pardir,
-        )
-    )
-)
-path = "./data-raw/epiforecast_au_ch_ger/"
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
+path = "../data-raw/epiforecast_au_ch_ger/"
 epi = os.listdir(path)
 epi.remove(".DS_Store")
 epi.sort()
@@ -112,5 +107,5 @@ for file in epi[
 
     # Datei exportieren
     df_t.to_csv(
-        "./data-processed/epiforecasts/" + datum[0] + "-epiforecasts.csv", index=False
+        "../data-processed/epiforecasts/" + datum[0] + "-epiforecasts.csv", index=False
     )
