@@ -30,6 +30,7 @@ for (file in files_raw) {
     data[, "data_version"] <- substr(file, 1, 10)
     data[, "target"] <- paste(ws, "day R")
     data[, "location"] <- "DE"
+    data[, "label"] <- "estimate"
     
     data[, "type"] <- "quantile"
     data$type[data$variable == "50%"] <- "point"
@@ -42,7 +43,7 @@ for (file in files_raw) {
     
     data[, variable:=NULL]
     
-    data %>% setcolorder(c("data_version", "target", "date", "location", "type", "quantile", "value"))
+    data %>% setcolorder(c("data_version", "target", "date", "location", "label", "type", "quantile", "value"))
     data <- data[order(date, type, quantile)]
     
     write_csv(data, paste0(save_path, substr(file, 1, 23), ".csv"))

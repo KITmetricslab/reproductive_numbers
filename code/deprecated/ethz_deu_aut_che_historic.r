@@ -19,7 +19,7 @@ for (f in files) {
     output_dataframe2 <- data.frame()
     output_dataframe3 <- data.frame()
     output_dataframe4 <- data.frame()
-    cnames <- c("data_version", "target", "date", "location", "type", "quantile", "value")
+    cnames <- c("data_version", "target", "date", "location", "label", "type", "quantile", "value")
 
     for (row in seq(1, nrow(df1))) {
         output_dataframe1 <- rbind(output_dataframe1, list(data_version, "3 day R", df1[row, 6], "DE", "point", "NA", df1[row, 7]))

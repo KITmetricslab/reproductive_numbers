@@ -1,85 +1,30 @@
-files <- list.files("../data-raw/SDSC", pattern = "*_re_*")
+library(readr)
+library(data.table)
+
+setwd("..")
+getwd()
+
+data_dir <- "data-raw/SDSC"
+files <- list.files(data_dir, pattern = "*_re_*", full.names = T)
 
 for (f in files) {
-    input_filename <- paste("../data-raw/SDSC/", f, sep = "")
-    pub_date <- substring(f, 8, 17)
+    pub_date <- regmatches(f, gregexpr("\\d{4}-\\d{2}-\\d{2}", f))[[1]]
     
-    input_3_series <- read.csv(input_filename, sep = ",") 
-    input_dataframe_all <- input_3_series
-    output_dataframe <- data.frame()
-    cnames <- c("data_version", "target", "date", "location", "type", "quantile", "value")
-    # Germany
-    input_dataframe <- input_dataframe_all[input_dataframe_all$country == 'Germany', ]
-    for (row in seq(1, nrow(input_dataframe))) {
-        output_dataframe <- rbind(output_dataframe,
-                                  list(pub_date,
-                                       paste(7, " day R", sep = ""),
-                                       input_dataframe[row, 2],
-                                       "DE", "point", "NA",
-                                       input_dataframe[row, 4]))
-        output_dataframe <- rbind(output_dataframe,
-                                  list(pub_date,
-                                       paste(7, " day R", sep = ""),
-                                       input_dataframe[row, 2],
-                                       "DE", "quantile", "0.025",
-                                       input_dataframe[row, 3]))
-        output_dataframe <- rbind(output_dataframe,
-                                  list(pub_date,
-                                       paste(7, " day R", sep = ""),
-                                       input_dataframe[row, 2],
-                                       "DE", "quantile", "0.975",
-                                       input_dataframe[row, 5]))
+    data_raw <- read_csv(f, show_col_types = F) %>% setDT()
+    data <- melt(data_raw, id.vars = c("date", "country", "observed")) %>%
+      mutate(data_version = pub_date,
+             target = "7 day R",
+             location = ifelse(country == "Austria", "AT",
+                               ifelse(country == "Germany", "DE",
+                                      ifelse(country == "Switzerland", "CH", NA))),
+             label = ifelse(observed == "Observed", "estimate", "forecast"),
+             type = ifelse(variable == "R_mean", "point", "quantile"),
+             quantile = ifelse(variable == "R_low", 0.025,
+                               ifelse(variable == "R_high", 0.975, NA))) %>%
+      select("data_version", "target", "date", "location", "label", "type", "quantile", "value") %>%
+      arrange(date)
 
-    }
-    # Austria
-    input_dataframe <- input_dataframe_all[input_dataframe_all$country == 'Austria', ]
-    for (row in seq(1, nrow(input_dataframe))) {
-        output_dataframe <- rbind(output_dataframe,
-                                  list(pub_date,
-                                       paste(7, " day R", sep = ""),
-                                       input_dataframe[row, 2],
-                                       "AT", "point", "NA",
-                                       input_dataframe[row, 4]))
-        output_dataframe <- rbind(output_dataframe,
-                                  list(pub_date,
-                                       paste(7, " day R", sep = ""),
-                                       input_dataframe[row, 2],
-                                       "AT", "quantile", "0.025",
-                                       input_dataframe[row, 3]))
-        output_dataframe <- rbind(output_dataframe,
-                                  list(pub_date,
-                                       paste(7, " day R", sep = ""),
-                                       input_dataframe[row, 2],
-                                       "AT", "quantile", "0.975",
-                                       input_dataframe[row, 5]))
-
-    }
-    # Switzerland
-    input_dataframe <- input_dataframe_all[input_dataframe_all$country == 'Switzerland', ]
-    for (row in seq(1, nrow(input_dataframe))) {
-        output_dataframe <- rbind(output_dataframe,
-                                  list(pub_date,
-                                       paste(7, " day R", sep = ""),
-                                       input_dataframe[row, 2],
-                                       "CH", "point", "NA",
-                                       input_dataframe[row, 4]))
-        output_dataframe <- rbind(output_dataframe,
-                                  list(pub_date,
-                                       paste(7, " day R", sep = ""),
-                                       input_dataframe[row, 2],
-                                       "CH", "quantile", "0.025",
-                                       input_dataframe[row, 3]))
-        output_dataframe <- rbind(output_dataframe,
-                                  list(pub_date,
-                                       paste(7, " day R", sep = ""),
-                                       input_dataframe[row, 2],
-                                       "CH", "quantile", "0.975",
-                                       input_dataframe[row, 5]))
-
-    }
-    colnames(output_dataframe) <- cnames
-    output_filename <- paste("../data-processed/SDSC/", pub_date, "-sdsc.csv", sep = "")
-    write.csv(output_dataframe, output_filename, row.names = FALSE)
+    write_csv(data, paste0("data-processed/SDSC/", pub_date, "-sdsc.csv"))
     
     cat(pub_date, "... \n")
 }

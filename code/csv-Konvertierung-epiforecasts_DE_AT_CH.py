@@ -62,6 +62,8 @@ for file in epi[
     # Spalten mit forecast löschen
     # df_t = df_t.drop(df_t[df_t.type == "forecast"].index)
 
+    df_t.loc[:, "label"] = df_t.type
+
     df_t.replace({"Germany": "DE"}, inplace=True)
     df_t.replace({"Austria": "AT"}, inplace=True)
     df_t.replace({"Switzerland": "CH"}, inplace=True)
@@ -97,6 +99,7 @@ for file in epi[
         "target",
         "date",
         "location",
+        "label",
         "type",
         "quantile",
         "value",
