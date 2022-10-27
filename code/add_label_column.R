@@ -25,3 +25,13 @@ for (method in methods){
     } 
   }
 }
+
+
+# manually for single files
+method <- "ETHZ_sliding_window"
+date <- "2021-03-12"
+file <- paste0("data-processed/", method, "/", date, "-", method, ".csv")
+read_csv(file, show_col_types = FALSE) %>%
+  mutate(label = "estimate") %>%
+  relocate(data_version, target, date, location, label, type, quantile, value) %>%
+  write_csv(file)

@@ -1131,3 +1131,26 @@ data_version,target,date,location,label,type,quantile,value
 2020-10-11,? day R,2020-09-14,DE,estimate,quantile,0.975,1.306
 2020-10-11,? day R,2020-09-15,DE,estimate,quantile,0.975,1.312
 2020-10-11,? day R,2020-09-16,DE,estimate,quantile,0.975,1.312
+                                  stimate,quantile,0.975,1.31
+2020-10-11,? day R,2020-09-18,DE,estimate,quantile,0.975,1.309
+2020-10-11,? day R,2020-09-19,DE,estimate,quantile,0.975,1.309
+2020-10-11,? day R,2020-09-20,DE,estimate,quantile,0.975,1.332
+2020-10-11,? day R,2020-09-21,DE,estimate,quantile,0.975,1.344
+2020-10-11,? day R,2020-09-22,DE,estimate,quantile,0.975,1.346
+2020-10-11,? day R,2020-09-23,DE,estimate,quantile,0.975,1.372
+2020-10-11,? day R,2020-09-24,DE,estimate,quantile,0.975,1.373
+2020-10-11,? day R,2020-09-25,DE,estimate,quantile,0.975,1.386
+2020-10-11,? day R,2020-09-26,DE,estimate,quantile,0.975,1.401
+2020-10-11,? day R,2020-09-27,DE,estimate,quantile,0.975,1.404
+2020-10-11,? day R,2020-09-28,DE,estimate,quantile,0.975,1.436
+2020-10-11,? day R,2020-09-29,DE,estimate,quantile,0.975,1.434
+2020-10-11,? day R,2020-09-30,DE,estimate,quantile,0.975,1.468
+2020-10-11,? day R,2020-10-01,DE,estimate,quantile,0.975,1.448
+2020-10-11,? day R,2020-10-02,DE,estimate,quantile,0.975,1.471
+2020-10-11,? day R,2020-10-03,DE,estimate,quantile,0.975,1.463
+2020-10-11,? day R,2020-10-04,DE,estimate,quantile,0.975,1.499
+2020-10-11,? day R,2020-10-05,DE,estimate,quantile,0.975,1.519
+2020-10-11,? day R,2020-10-06,DE,estimate,quantile,0.975,1.52
+2020-10-11,? day R,2020-10-07,DE,estimate,quantile,0.975,1.529
+2020-10-11,? day R,2020-10-08,DE,estimate,quantile,0.975,1.546
+2020-10-11,? day R,2020-10-09,DE,estimate,quantile,0.975,1.542
