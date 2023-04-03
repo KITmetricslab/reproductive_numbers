@@ -11,13 +11,13 @@ countries <- c("AUT", "CHE", "DEU")
 
 files <- list.files(paste0(data_dir, "DEU"), pattern = ("*.csv"))
 
-for(file in files[207:385]){
+for(file in files){
   rm(data_DEU, data_AUT, data_CHE, data)
   for (country in countries){
     f <- gsub("deu", tolower(country), file)
     try(assign(paste0("data_", country),
                read_csv(paste0(data_dir, country, "/", f)) %>%
-                 select(date, repronum, ci.lower, ci.upper) %>%
+                 dplyr::select(date, repronum, ci.lower, ci.upper) %>%
                  mutate(data_version=substr(f, 1, 10),
                         target="7 day",
                         location=ifelse(country=="DEU", "DE",
@@ -30,6 +30,6 @@ for(file in files[207:385]){
                              ifelse(type =="ci.upper", 0.975, NA)),
            type = ifelse(type == "repronum", "point", "quantile"),
            label = ifelse(as_date(data_version) - as_date(date) <= 10, "estimate based on partial data", "estimate")) %>%
-    select(data_version, target, date, location, label, type, quantile, value)
+    dplyr::select(data_version, target, date, location, label, type, quantile, value)
   write_csv(data, paste0("data-processed/ilmenau/", substr(file, 1, 10), "-ilmenau.csv"))
 }
