@@ -5,8 +5,7 @@ setwd("..")
 getwd()
 
 # methods with no labels
-methods <- c("Braunschweig", "ETHZ_sliding_window","RKI_7day",
-             "rtlive", "ilmenau", "globalrt_7d")
+methods <- c("Braunschweig", "ETHZ_sliding_window","RKI_7day", "rtlive", "globalrt_7d")
 
 for (method in methods){
   data_dir <- paste0("data-processed/", method, "/")
