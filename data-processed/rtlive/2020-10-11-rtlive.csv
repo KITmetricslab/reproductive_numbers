@@ -1131,7 +1131,7 @@ data_version,target,date,location,label,type,quantile,value
 2020-10-11,? day R,2020-09-14,DE,estimate,quantile,0.975,1.306
 2020-10-11,? day R,2020-09-15,DE,estimate,quantile,0.975,1.312
 2020-10-11,? day R,2020-09-16,DE,estimate,quantile,0.975,1.312
-                                  stimate,quantile,0.975,1.31
+2020-10-11,? day R,2020-09-17,DE,estimate,quantile,0.975,1.31
 2020-10-11,? day R,2020-09-18,DE,estimate,quantile,0.975,1.309
 2020-10-11,? day R,2020-09-19,DE,estimate,quantile,0.975,1.309
 2020-10-11,? day R,2020-09-20,DE,estimate,quantile,0.975,1.332
