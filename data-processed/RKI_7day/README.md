@@ -1,0 +1,1 @@
+This file contains 7-day R_t estimates by RKI as published [here](https://github.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung). The estimates are published under a  CC-BY-4.0 license.
