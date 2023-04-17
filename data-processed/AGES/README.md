@@ -1,0 +1,1 @@
+This folder contains estimates of R_t for Austria as published by AGES (Österreichische Agentur für Gesundheit und Ernährungssicherheit GmbH). Estimates have been extracted form the PDF reports published [here](https://www.ages.at/forschung/wissen-aktuell/detail/epidemiologische-parameter-des-covid19-ausbruchs-oesterreich).
