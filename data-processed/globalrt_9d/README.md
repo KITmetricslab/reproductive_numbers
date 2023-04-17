@@ -1,0 +1,1 @@
+This folder contains R_t estimates published by globalrt with an assumed generation time of 9 days. Estimates were published [here](https://github.com/crondonm/TrackingR) under an MIT license. For estimates with different mean generation times see parallel folders.
