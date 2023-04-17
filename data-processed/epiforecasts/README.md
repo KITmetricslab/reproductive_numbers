@@ -1,0 +1,1 @@
+Thsi file contains R_t estimates by epiforecasts as published [here]([https://github.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung](https://github.com/epiforecasts/covid-rt-estimates)). The estimates are published under an MIT license.
