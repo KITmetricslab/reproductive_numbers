@@ -1,0 +1,1 @@
+This folder contains R_t estimates published by rtlive [here](https://github.com/michaelosthege/rtlive-global) and [here](https://zenodo.org/record/5683308#.ZD1Zj45BxH4). Estimates are published under a GNU Affero General Public License v3.0.
