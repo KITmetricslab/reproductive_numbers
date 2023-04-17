@@ -1,0 +1,1 @@
+This folder contains R_t esitmates published by Helmholtz Zentrum für Infektionsforschung Braunschweig [here](https://gitlab.com/simm/covid19/secir/-/tree/master). Authorization for re-use has been obtained by email.
