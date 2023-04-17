@@ -1,0 +1,1 @@
+This folder contains R_t estimates published by the TU Ilmenau team [here]([https://github.com/crondonm/TrackingR](https://github.com/Stochastik-TU-Ilmenau/COVID-19/tree/gh-pages). Estimates were published under an MIT license.
